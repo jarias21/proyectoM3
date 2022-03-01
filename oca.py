@@ -39,3 +39,9 @@ while patata <= 10:
         print("Este es el tablero")
         lista_tmp[dado-1] = jugador
         print(lista_tmp)
+ else:
+        posc_maquina += dado
+        print("%sMaquina te ha tocado el número %d" % (maquina , dado))
+        print("Este es el tablero")
+        lista_tmp[dado-1] = "maquina"
+        print(lista_tmp)
