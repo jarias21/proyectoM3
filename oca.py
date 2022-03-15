@@ -30,7 +30,7 @@ def oca(posicion, turno):
                 break
             else:
                 continue
-    print("te ha tocado oca---")
+    print("Te ha tocado Oca..De oca a oca y tiro porque me toca")
     return posicion , turno
 
 def puente(posicion, turno):
@@ -41,13 +41,14 @@ def puente(posicion, turno):
     else:
         print("Ha habido un error")
         error = input("CUIDADO!!!")
-    print("te ha tocado la puente---")
+    print("Te ha tocado el puente..De puente a puente y tiro porque me lleva la corriente")
     return posicion, turno
+
 
 def dados(turno):
     dado1, dado2 = tiro(), tiro()
     posc_final = (dado1 + dado2) + 3
-    print("te ha tocado dados")
+    print("Te ha tocado dados..De dados a dados y tiro porque son cuadrados")
     return posc_final, turno
 
 def turno_jugador(posc_jugador, jugador, posc_maquina, turno, lista_tmp, dado):
@@ -55,19 +56,19 @@ def turno_jugador(posc_jugador, jugador, posc_maquina, turno, lista_tmp, dado):
 
     if (posc_jugador + dado) > len(lista_tmp):
         turno = "maquina"
-        print("te has pasado de valor, consigue el valor exacto")
+        print("Te has pasado de valor, consigue el valor exacto")
         pass
     elif (posc_jugador + dado) == len(lista_tmp):
         posc_jugador += dado
         lista_tmp[posc_jugador-1] = jugador.upper()
         lista_tmp[posc_maquina-1] = "MAQUINA"
-        print("%s te ha tocado el número %d" % (jugador, dado))
+        print("%s Te ha tocado el número %d" % (jugador, dado))
         print("Este es el tablero")
         pass
     elif (posc_jugador + dado) < len(lista_tmp):
         posc_jugador += dado
         clear()
-        print("%s te ha tocado el número %d" % (jugador, dado))
+        print("%s Te ha tocado el número %d" % (jugador, dado))
         print("Este es el tablero")
     #Se comprueban las distintas casillas del jugador
         if lista_tmp[posc_jugador-1] == "OCA":
@@ -84,11 +85,12 @@ def turno_jugador(posc_jugador, jugador, posc_maquina, turno, lista_tmp, dado):
             posc_jugador, turno = dados(turno)
         elif lista_tmp[posc_jugador-1] == "LABERINTO":
             posc_jugador = 31
+            turno = "maquina"
         elif lista_tmp[posc_jugador-1] == "CARCEL":
             carcel = "jugador"
             turno = "maquina"
         elif lista_tmp[posc_jugador-1] == "CALAVERA":
-            print("Te ha tocado la CALAVERA, vuelves a empezar")
+            print("Te ha tocado la CALAVERA, vuelves a empezar desde la casilla de inicio")
             posc_jugador = 0
             turno = "maquina"
         else:
@@ -109,7 +111,7 @@ def turno_maquina(posc_jugador, jugador, posc_maquina, turno, lista_tmp, dado):
 
     if (posc_maquina + dado) > len(lista_tmp):
         turno = "jugador"
-        print("la maquina se ha pasado de valor")
+        print("La maquina se ha pasado de valor")
         pass
     elif (posc_maquina + dado) == len(lista_tmp):
         posc_maquina += dado
@@ -138,11 +140,12 @@ def turno_maquina(posc_jugador, jugador, posc_maquina, turno, lista_tmp, dado):
             turno = "jugador"
         elif lista_tmp[posc_maquina-1] == "LABERINTO":
             posc_maquina = 31
+            turno = "jugador"
         elif lista_tmp[posc_maquina-1] == "CARCEL":
             carcel = "maquina"
             turno = "jugador"
         elif lista_tmp[posc_maquina-1] == "CALAVERA":
-            print("A la maquina le ha tocado la CALAVERA, vuelves a empezar")
+            print("A la maquina le ha tocado la CALAVERA, vuelve a empezar desde la casilla de inicio")
             posc_maquina = 0
             turno = "jugador"
         else:
@@ -155,15 +158,14 @@ def turno_maquina(posc_jugador, jugador, posc_maquina, turno, lista_tmp, dado):
             lista_tmp[posc_jugador-1] = jugador.upper()
             lista_tmp[posc_maquina-1] = "MAQUINA"
         print(lista_tmp)
-        turno = "jugador"
-            #çtime.sleep(0.8)
+            #time.sleep(0.8)
         tmp = input("\n presiona la tecla enter: ")
     return posc_jugador, posc_maquina, turno, posada, pozo, carcel
 
 def primer_turno(posc_jugador, dado, lista_tmp):
     clear()
     posc_jugador += dado
-    print("%s te ha tocado el número %d" % (jugador, dado))
+    print("%s Te ha tocado el número %d" % (jugador, dado))
     print("Este es el tablero")
     if lista_tmp[posc_jugador-1] == "OCA":
         posc_jugador, turno = oca(posc_jugador, "jugador")
@@ -207,18 +209,18 @@ while True:
     elif turno == "maquina":
         #POSADA turno maquina
         if posada == "jugador":
-            print("Has caido en la posada")
+            print("Has caido en la posada...pierdes 2 turnos")
             for i in range(3):
                 posc_jugador, posc_maquina, turno, posada, pozo, carcel = turno_maquina(posc_jugador, jugador, posc_maquina, turno, lista_tmp, dado)
             posada = ""
         #POZO turno maquina
         elif pozo == "jugador":
-            print("Has caido en la pozo")
+            print("Has caido en la pozo...pierdes 3 turnos")
             for i in range(4):
                 posc_jugador, posc_maquina, turno, posada, pozo, carcel = turno_maquina(posc_jugador, jugador, posc_maquina, turno, lista_tmp, dado)
             pozo = ""
         elif carcel == "jugador":
-            print("Has caido en la Carcel")
+            print("Has caido en la Carcel...pierdes 3 turnos")
             for i in range(4):
                 posc_jugador, posc_maquina, turno, posada, pozo, carcel = turno_maquina(posc_jugador, jugador, posc_maquina, turno, lista_tmp, dado)
         else:
@@ -231,10 +233,10 @@ while True:
     if posc_jugador == len(lista_mapa()):
         clear()
         print(lista_tmp)
-        print("Has ganado---------")
+        print("Has ganado ")
         break
     elif posc_maquina == len(lista_mapa()):
         clear()
         print(lista_tmp)
-        print("Ha ganado la maquina---------")
+        print("Ha ganado la maquina ")
         break
