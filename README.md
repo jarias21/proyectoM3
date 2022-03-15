@@ -5,4 +5,4 @@ Día 10 he conseguido que se pueda ver en el tablero la posicion de la maquina, 
 Día 11 hemos conseguido que la maquina y jugador lleguen hasta la final, gran avance.
 Día 13 estoy consiguiendo que todos los castigos y premios se cumplan.
 Día 14 he conseguido el puente y continuare con lo que falta, vamos bien encaminados.
-Día 15 he acabado el proyecto.
+Día 15 he acabado el proyecto, solo falta pulir los últimos retoques.
