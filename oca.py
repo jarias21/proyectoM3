@@ -45,11 +45,13 @@ def puente(posicion, turno):
     return posicion, turno
 
 
-def dados(turno):
-    dado1, dado2 = tiro(), tiro()
-    posc_final = (dado1 + dado2) + 3
+def dados(turno, posicion):
+    if posicion == 27:
+        posicion = 54
+    elif posicion == 54:
+        posicion = 27
     print("Te ha tocado dados..De dados a dados y tiro porque son cuadrados")
-    return posc_final, turno
+    return posicion, turno
 
 def turno_jugador(posc_jugador, jugador, posc_maquina, turno, lista_tmp, dado):
     posada, pozo, carcel = "", "", ""
@@ -191,17 +193,20 @@ while True:
         if posada == "maquina":
             print("Has caido en la posada")
             for i in range(3):
+                lista_tmp = lista_mapa()
                 posc_jugador, posc_maquina, turno, posada, pozo, carcel = turno_jugador(posc_jugador, jugador, posc_maquina, turno, lista_tmp, dado)
             posada = ""
         #POZO turno jugador
         elif pozo == "maquina":
             print("Has caido en la pozo")
             for i in range(4):
+                lista_tmp = lista_mapa()
                 posc_jugador, posc_maquina, turno, posada, pozo, carcel = turno_jugador(posc_jugador, jugador, posc_maquina, turno, lista_tmp, dado)
             pozo = ""
         elif carcel == "maquina":
             print("Has caido en Carcel")
             for i in range(4):
+                lista_tmp = lista_mapa()
                 posc_jugador, posc_maquina, turno, posada, pozo, carcel = turno_jugador(posc_jugador, jugador, posc_maquina, turno, lista_tmp, dado)
         else:
             posc_jugador, posc_maquina, turno, posada, pozo, carcel = turno_jugador(posc_jugador, jugador, posc_maquina, turno, lista_tmp, dado)
@@ -211,17 +216,20 @@ while True:
         if posada == "jugador":
             print("Has caido en la posada...pierdes 2 turnos")
             for i in range(3):
+                lista_tmp = lista_mapa()
                 posc_jugador, posc_maquina, turno, posada, pozo, carcel = turno_maquina(posc_jugador, jugador, posc_maquina, turno, lista_tmp, dado)
             posada = ""
         #POZO turno maquina
         elif pozo == "jugador":
             print("Has caido en la pozo...pierdes 3 turnos")
             for i in range(4):
+                lista_tmp = lista_mapa()
                 posc_jugador, posc_maquina, turno, posada, pozo, carcel = turno_maquina(posc_jugador, jugador, posc_maquina, turno, lista_tmp, dado)
             pozo = ""
         elif carcel == "jugador":
             print("Has caido en la Carcel...pierdes 3 turnos")
             for i in range(4):
+                lista_tmp = lista_mapa()
                 posc_jugador, posc_maquina, turno, posada, pozo, carcel = turno_maquina(posc_jugador, jugador, posc_maquina, turno, lista_tmp, dado)
         else:
             posc_jugador, posc_maquina, turno, posada, pozo, carcel = turno_maquina(posc_jugador, jugador, posc_maquina, turno, lista_tmp, dado)
@@ -240,3 +248,4 @@ while True:
         print(lista_tmp)
         print("Ha ganado la maquina ")
         break
+
