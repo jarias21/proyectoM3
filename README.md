@@ -6,3 +6,4 @@ Día 11 hemos conseguido que la maquina y jugador lleguen hasta la final, gran a
 Día 13 estoy consiguiendo que todos los castigos y premios se cumplan.
 Día 14 he conseguido el puente y continuare con lo que falta, vamos bien encaminados.
 Día 15 he acabado el proyecto, solo falta pulir los últimos retoques.
+Día 17 he retocado algún fallo que había, me parerce que ya está apcabado.
